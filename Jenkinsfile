@@ -9,6 +9,13 @@ pipeline {
   }
   
   stages {
+    stage('Checkout') {
+            try {
+                checkout scm
+            } catch(error){
+                sh "return"
+            }
+    }
     stage('Initialize'){
         def nodeHome = tool 'mynode'
         env.PATH = "${nodeHome}/bin"
