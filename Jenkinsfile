@@ -9,12 +9,8 @@ pipeline {
   
   stages {
     stage('Checkout') {
-            try {
-                checkout scm
-            } catch(error){
-                sh "return"
-            }
-        }  
+      checkout scm
+    }  
     stage('Install Packages') {
       steps {
         sh 'npm install'
