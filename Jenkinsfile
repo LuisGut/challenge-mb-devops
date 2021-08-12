@@ -17,19 +17,19 @@ pipeline {
         sh 'npm install'
       }
     }
-    stage('Test and Build') {
-      parallel {
-        stage('Run Tests') {
-          steps {
-            sh 'npm run test'
-          }
-        }
-        stage('Create Build Artifacts') {
+    stage('Build') {
           steps {
             sh 'npm run build'
           }
-        }
-      }
     }
+    stage('Deployment') {
+          steps {
+            withAWS(region:'us-east-1',credentials:'test-user') {
+              s3Delete(bucket: 'challengebmusic', path:'**/*')
+              s3Upload(bucket: 'challengebmusic', workingDir:'build', includePathPattern:'**/*');
+            }
+          }
+        }
   }
-}   
+}
+   
