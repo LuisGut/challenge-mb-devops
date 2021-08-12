@@ -11,12 +11,7 @@ pipeline {
     npm_config_cache = 'npm-cache'
   }
   
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
-    }  
+  stages {  
     stage('Install Packages') {
       steps {
         sh 'npm install'
