@@ -1,4 +1,5 @@
 pipeline {
+  agent any
   
   environment {
     CI = 'true'
@@ -7,10 +8,7 @@ pipeline {
     npm_config_cache = 'npm-cache'
   }
   
-  stages {
-    stage('Checkout') {
-      checkout scm
-    }  
+  stages {  
     stage('Install Packages') {
       steps {
         sh 'npm install'
