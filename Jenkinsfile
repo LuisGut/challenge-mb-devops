@@ -7,13 +7,12 @@ pipeline {
     PATH="$PATH:${pwd()}/.npm-global/bin:${pwd tmp: true}/.npm-global/bin"
     npm_config_cache = 'npm-cache'
   }
-
-  stage('Initialize'){
-        def nodeHome = tool 'mynode'
-        env.PATH = "${mynode}/bin"
-    }
   
-  stages {  
+  stages {
+    stage('Initialize'){
+        def nodeHome = tool 'mynode'
+        env.PATH = "${nodeHome}/bin"
+    }  
     stage('Install Packages') {
       steps {
         sh 'npm install'
