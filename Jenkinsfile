@@ -26,7 +26,7 @@ pipeline {
           steps {
             withAWS(region:'us-east-1',credentials:'test-user') {
               s3Delete(bucket: 'challengebmusic', path:'**/*')
-              s3Upload(bucket: 'challengebmusic', workingDir:'dist/helloworld', includePathPattern:'**/*');
+              s3Upload(bucket: 'challengebmusic', workingDir:'dist/helloWorld', includePathPattern:'**/*');
             }
           }
         }
