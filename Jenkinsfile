@@ -27,6 +27,7 @@ pipeline {
             withAWS(region:'us-east-1',credentials:'test-user') {
               s3Delete(bucket: 'challengebmusic', path:'**/*')
               s3Upload(bucket: 'challengebmusic', workingDir:'dist/helloWorld', includePathPattern:'**/*');
+              cfInvalidate(distribution:'E19DCMCKAX3JN5', paths:['/*'], waitForCompletion: true)
             }
           }
         }
